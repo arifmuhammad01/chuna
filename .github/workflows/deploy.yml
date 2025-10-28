@@ -3,7 +3,7 @@ name: 🚀 Full WordPress Deploy to cPanel (Files + Database)
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
