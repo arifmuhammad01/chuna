@@ -46,16 +46,13 @@ jobs:
             rm /home/${{ secrets.CPANEL_USER }}/db.sql
           "
 
-        # 6️⃣ Update WordPress site URL after database import
-          - name: Update site URL in WordPress options
-            run: |
-              ssh ${{ secrets.SSH_USER }}@${{ secrets.CPANEL_HOST }} "
-                mysql -u${{ secrets.DB_USER }} -p'${{ secrets.DB_PASSWORD }}' ${{ secrets.DB_NAME }} -e \"
-                  UPDATE wp_options 
-                  SET option_value = 'https://chuna.docapply4mefilebin.com' 
-                  WHERE option_name IN ('siteurl', 'home');
-                \"
-              "
-
-          
-
+      # 6️⃣ Update WordPress site URL after database import
+      - name: Update site URL in WordPress options
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.CPANEL_HOST }} "
+            mysql -u${{ secrets.DB_USER }} -p'${{ secrets.DB_PASSWORD }}' ${{ secrets.DB_NAME }} -e \"
+              UPDATE wp_options 
+              SET option_value = 'https://chuna.docapply4mefilebin.com' 
+              WHERE option_name IN ('siteurl', 'home');
+            \"
+          "
